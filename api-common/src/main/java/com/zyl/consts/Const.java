@@ -1,4 +1,4 @@
-package com.zyl;
+package com.zyl.consts.consts;
 
 /**
  * @author ZhZ
@@ -23,4 +23,5 @@ public class Const {
 
     public static final String IGNORE_METHOD = "OPTIONS";
     public static final int NOT_EXIST_SERVICE = 506;
+    public static final int NOT_FOUND = 404;
 }

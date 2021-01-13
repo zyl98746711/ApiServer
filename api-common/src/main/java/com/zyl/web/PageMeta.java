@@ -1,18 +1,39 @@
 package com.zyl.web;
 
+import java.io.Serializable;
+
 /**
+ * 带分页的meta对象
+ *
  * @author zyl
  */
-public class PageMeta<T> implements Meta {
+public final class PageMeta extends EmptyMeta implements Serializable {
+    private Page pagination;
 
-    private long total;
+    public PageMeta() {
 
-    public long getTotal() {
-        return total;
     }
 
-    public PageMeta<T> setTotal(long total) {
-        this.total = total;
-        return this;
+    public PageMeta(Page page) {
+        if (!Page.class.equals(page.getClass())) {
+            page = new Page(page);
+        }
+        this.pagination = page;
+    }
+
+    public Page getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(Page pagination) {
+        this.pagination = pagination;
+    }
+
+    @Override
+    public String toString() {
+        return "PageMeta{" +
+                "pagination=" + pagination +
+                super.toString() +
+                '}';
     }
 }

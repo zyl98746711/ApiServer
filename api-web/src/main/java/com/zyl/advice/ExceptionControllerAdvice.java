@@ -1,16 +1,19 @@
 package com.zyl.advice;
 
 
-import com.zyl.Const;
+import com.zyl.consts.consts.Const;
 import com.zyl.web.EmptyMeta;
 import com.zyl.web.Error;
 import com.zyl.web.Response;
+
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
  *
  * @author zyl
  */
-@RestControllerAdvice
+@ControllerAdvice
 public class ExceptionControllerAdvice {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -27,7 +30,13 @@ public class ExceptionControllerAdvice {
         List<Error> errors = new ArrayList<>(allErrors.size());
         allErrors.forEach(objectError -> errors
                 .add(new Error(objectError.getField(), objectError.getDefaultMessage())));
-        return Response.fail(Const.STATUS_UNKNOWN_ERROR, errors);
+        return Response.fail(com.zyl.consts.consts.Const.STATUS_UNKNOWN_ERROR, errors);
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = Exception.class)
+    public Response<Void, EmptyMeta> catchException(Exception e) {
+        return Response.fail(Const.STATUS_WRONG_REQUEST, Collections.emptyList());
     }
 
 }
