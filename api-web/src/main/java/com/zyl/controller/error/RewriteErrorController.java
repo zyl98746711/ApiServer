@@ -4,6 +4,7 @@ import com.zyl.consts.consts.Const;
 import com.zyl.web.EmptyMeta;
 import com.zyl.web.Response;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
@@ -28,6 +29,7 @@ public class RewriteErrorController extends AbstractErrorController {
 
     private ErrorProperties errorProperties;
 
+    @Autowired
     public RewriteErrorController(ErrorAttributes errorAttributes, ServerProperties serverProperties) {
         this(errorAttributes, serverProperties.getError(), Collections.emptyList());
     }

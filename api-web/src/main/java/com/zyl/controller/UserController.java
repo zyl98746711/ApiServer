@@ -1,7 +1,7 @@
 package com.zyl.controller;
 
-import com.zyl.domain.User;
-import com.zyl.mapper.UserMapper;
+import com.zyl.domain.Account;
+import com.zyl.mapper.AccountMapper;
 import com.zyl.web.EmptyMeta;
 import com.zyl.web.Response;
 
@@ -22,7 +22,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
+    private AccountMapper accountMapper;
 
     /**
      * 保存用户
@@ -30,9 +30,8 @@ public class UserController {
      * @return 是否成功
      */
     @GetMapping("")
-    public Response<Void, EmptyMeta> saveUser(@RequestParam String name) {
-        List<User> users = userMapper.findAll();
-        System.out.println(users);
-        return Response.success(null);
+    public Response<List<Account>, EmptyMeta> saveUser(@RequestParam String name) {
+        List<Account> accounts = accountMapper.findAll();
+        return Response.success(accounts);
     }
 }

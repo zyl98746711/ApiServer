@@ -7,11 +7,11 @@ import lombok.Data;
  * @date 2021/1/8 10:11 下午
  */
 @Data
-public class User {
+public class Account {
 
     private Integer uid;
 
     private String userName;
 
-    private String userPassword;
+    private String mobile;
 }
